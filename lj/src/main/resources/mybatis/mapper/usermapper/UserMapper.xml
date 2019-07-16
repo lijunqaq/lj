@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.lj.dao.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.User">
+    <id column="keyID" jdbcType="VARCHAR" property="keyID" />
+    <result column="UserName" jdbcType="VARCHAR" property="userName" />
+    <result column="PawwWord" jdbcType="VARCHAR" property="pawwWord" />
+    <result column="State" jdbcType="INTEGER" property="state" />
+    <result column="CreateBy" jdbcType="VARCHAR" property="createBy" />
+    <result column="CreateTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="UpdateBy" jdbcType="VARCHAR" property="updateBy" />
+    <result column="UpdateTime" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="DeptID" jdbcType="VARCHAR" property="deptID" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    keyID, UserName, PawwWord, State, CreateBy, CreateTime, UpdateBy, UpdateTime, DeptID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.User">
+    insert into user (keyID, UserName, PawwWord,
+      State, CreateBy, CreateTime,
+      UpdateBy, UpdateTime, DeptID
+      )
+    values (#{keyID,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{pawwWord,jdbcType=VARCHAR},
+      #{state,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deptID,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="keyID != null">
+        keyID,
+      </if>
+      <if test="userName != null">
+        UserName,
+      </if>
+      <if test="pawwWord != null">
+        PawwWord,
+      </if>
+      <if test="state != null">
+        State,
+      </if>
+      <if test="createBy != null">
+        CreateBy,
+      </if>
+      <if test="createTime != null">
+        CreateTime,
+      </if>
+      <if test="updateBy != null">
+        UpdateBy,
+      </if>
+      <if test="updateTime != null">
+        UpdateTime,
+      </if>
+      <if test="deptID != null">
+        DeptID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="keyID != null">
+        #{keyID,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pawwWord != null">
+        #{pawwWord,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptID != null">
+        #{deptID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.User">
+    update user
+    <set>
+      <if test="userName != null">
+        UserName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="pawwWord != null">
+        PawwWord = #{pawwWord,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        State = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        CreateBy = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        UpdateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deptID != null">
+        DeptID = #{deptID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.User">
+    update user
+    set UserName = #{userName,jdbcType=VARCHAR},
+      PawwWord = #{pawwWord,jdbcType=VARCHAR},
+      State = #{state,jdbcType=INTEGER},
+      CreateBy = #{createBy,jdbcType=VARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      UpdateTime = #{updateTime,jdbcType=TIMESTAMP},
+      DeptID = #{deptID,jdbcType=VARCHAR}
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where UserName = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectUserList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+
+</mapper>

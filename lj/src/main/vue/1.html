@@ -1,0 +1,194 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- DEBUG INFO START-->
+<!-- Current RequestPath: /workflow/execute.jsp -->
+<!-- Referer page: http://135.1.9.229:7002/mskc/userpanel/portalAll.do -->
+<!-- DEBUG INFO END-->
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+
+<!-- style sheet files -->
+<link rel="stylesheet" type="text/css" href="/mskc/main/style/base.css" />
+<link rel="stylesheet" type="text/css" href="/mskc/main/style/main.css" />
+<link rel="stylesheet" type="text/css" href="/mskc/main/style/jmesa.css" />
+<link rel="stylesheet" type="text/css" href="/mskc/main/script/showLoading/css/showLoading.css" />
+
+<!-- JavaScript files -->
+<script type="text/javascript" src="/mskc/main/script/theCamp.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jquery.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jmesa.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jquery.validate.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jquery.jmesa.js"></script>
+<script type="text/javascript" src="/mskc/main/script/showLoading/js/jquery.showLoading.min.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jquery.form.js"></script>
+<script type="text/javascript" src="/mskc/main/script/jquery.MetaData.js"></script>
+<script type="text/javascript" src="/mskc/main/script/common.js"></script>
+<script type="text/javascript" src="/mskc/main/script/util.js"></script>
+<script type="text/javascript" src="/mskc/main/script/application.js"></script>
+<script type="text/javascript" src="/mskc/main/script/workflow.js"></script>
+<script type="text/javascript" src="/mskc/main/script/showApproveInfo.js"></script>
+
+
+<script type="text/javascript">
+    var path = "/mskc/main";
+    var currentActDef = "";//
+    if(window.parent.document.getElementById("currentActDef")!=null){
+        currentActDef = window.parent.document.getElementById("currentActDef").value;
+        if(currentActDef.indexOf('$')==0)
+            currentActDef = currentActDef.substring(1);
+        //alert(currentActDef);
+    }
+
+</script>
+<div id="suggestions" class="suggestionsBox" ></div>
+<div id="liuchengcanshu" class="suggestionsBox" >
+    <input type="hidden" name="relevantData" id="relevantData" value=''/>
+</div>
+
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+
+<link rel="stylesheet" type="text/css" href="/mskc/main/script/EXT/resources/css/ext-all2.css"/>
+<link rel="stylesheet" type="text/css" href="/mskc/main/script/EXT/resources/css/ext-patch.css"/>
+
+<script type="text/javascript" src="/mskc/main/script/EXT/adapter/ext/ext-base.js"></script>
+<script type="text/javascript" src="/mskc/main/script/EXT/ext-all2.js"></script>
+<script type="text/javascript" src="/mskc/main/script/EXT/build/locale/ext-lang-zh_CN.js"></script>
+<script type="text/javascript" src="/mskc/main/script/EXT/TreeCheckNodeUI.js"></script>
+
+<script type="text/javascript">
+    Ext.BLANK_IMAGE_URL = '/mskc/main/script/EXT/resources/images/default/s.gif';
+</script>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+    <title>ÈÎÎñÉóÅú</title>
+</head>
+<script type="text/javascript" src="/mskc/main/workflow/execute.js"></script>
+<script type="text/javascript" src="/mskc/main/workflow/executeBpsNode.js"></script>
+<script>
+    function buttonDisplay() {
+        var btnCancel=document.frames["editFrame"].document.getElementById("btn_cancel");
+        if(btnCancel)
+            btnCancel.style.display='none';
+        var btnBack=document.frames["editFrame"].document.getElementById("btn_back");
+        if(btnBack)
+            btnBack.style.display='none';
+        //top.Ext.Msg.hide();
+    };
+    $(function() {
+        //°´Å¥¿ØÖÆ
+        var currentActDef = $("#currentActDef").val();
+        if(currentActDef!='draftAct'){
+            var inTransfer = $("#inTransfer").val();
+            if(inTransfer!='1'){
+                document.getElementById("btn_terminate").style.display='none';
+            }
+        }
+        var bizType = $("#bizType").val();
+        if(bizType=='ANNUAL_PLAN' || bizType=='ANNUAL_PLAN_ADJUST'){
+            document.getElementById("btn_terminate").style.display='none';
+        }
+        if(bizType=='NOTIFY'){
+            document.getElementById("btn_handover").style.display='block';
+        }
+        if(currentActDef=='draftAct'){
+            document.getElementById("btn_refuse").style.display='none';
+            //	document.getElementById("btn_transfer").style.display='none';
+        }
+        if(bizType=='ANNUAL_PLAN_ADJUST'){
+            var adjustType = document.frames["editFrame"].document.getElementById("adjustType");
+            if(currentActDef=='draftAct'&&adjustType&&adjustType.value==2){
+                document.getElementById("btn_terminate").style.display='block';
+            }
+        }
+        if(currentActDef=='draftAct'){
+            try{
+                document.getElementById("btn_transfer").style.display='none';
+                document.getElementById("btn_handover").style.display='none';
+            }catch(e){
+            }
+        }
+        if(bizType=='NOTIFY' || bizType=='DBCK' || bizType=='LLCK'){
+            document.getElementById("btn_handover").style.display='block';
+        }
+        if($("#hiddenTermin").val()=="true"){
+            document.getElementById("btn_terminate").style.display='none';
+        }
+    });
+</script>
+<body>
+
+<form method="post" id="executeForm" name="executeForm">
+
+    <div id="BodyPanel">
+        <div id="auditPanel">
+            <table class="functionBar" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+
+
+
+                                <td class="button"><a href="#" id="btn_agree"><span><img  src="../images/ico_save.gif" class="bt_img"/>Í¬Òâ</span></a></td>
+                                <td class="button"><a href="#" id="btn_refuse"><span><img src="../images/ico_save.gif" class="bt_img"/>²»Í¬Òâ</span></a></td>
+                                <!-- 2015-10-04 ×¢ÊÍÈ«²¿×ªÄâ°ì -->
+                                <!-- <td class="button"><a href="#" id="btn_transfer"><span><img src="../images/ico_save.gif" class="bt_img"/>×ªÄâ°ì</span></a></td> -->
+                                <td class="button"><a href="#" id="btn_handover"><span><img src="../images/ico_save.gif" class="bt_img"/>×ª°ì</span></a></td>
+                                <td class="button"><a href="#" id="btn_terminate"><span><img src="../images/ico_save.gif" class="bt_img"/>ÖÕÖ¹</span></a></td>
+
+
+                                <td class="button"><a href="#" id="btn_back" ><span><img src="../images/ico_back.gif" class="bt_img"/>·µ»Ø</span></a></td>
+                                <td class="button"><a href="#" id="openProcessPic" onclick="openProcessPic(1018070327);"><span><img src="../images/ico_flow.gif" class="bt_img"/>Á÷³Ì¼à¿Ø</span></a></td>
+                                <td class="button"><a href="#" id="btn_audit" onclick="onAudit();"><span><img  src="../images/icon_normal_user.gif" class="bt_img"/>ÉèÖÃÄ¬ÈÏÉóÅúÈË</span></a></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="editPanel">
+            <iframe id="editFrame" name="editFrame" onload="buttonDisplay();" width="100%" height="1000" src="/mskc/main1012353835&currentActDef=warehouseManagerAct">
+                ¡¡¡¡		</iframe>
+        </div>
+    </div>
+    <input type="hidden" id="from" name="from" value=""/>
+    <!-- agree -->
+    <input type="hidden" id="workItemId" name="workItemId" value="1588132"/>
+    <input type="hidden" id="processInstId" name="processInstId" value="575569"/>
+    <input type="hidden" id="currentActInstId" name="currentActInstId" value="2639025"/>
+    <!-- refuse -->
+    <input type="hidden" id="currentActDef" name="currentActDef" value="warehouseManagerAct"/>
+    <!-- transfer -->
+    <input type="hidden" id="inTransfer" name="inTransfer" value="0"/>
+    <!-- handover -->
+    <!-- teminate -->
+    <input type="hidden" id="busiId" name="busiId" value="1012353835"/>
+    <!-- TaskSerial -->
+    <input type="hidden" id="bizType" name="bizType" value="DGLL"/>
+    <input type="hidden" id="orderId" name="orderId" value="1018070327"/>
+    <input type="hidden" id="nodeName" name="nodeName" value="Îï¹ÜÔ±È·ÈÏÊµÎï·¢»õ"/>
+    <input type="hidden" id="description" name="description" value=""/>
+    <input type="hidden" id="actUserId" name="actUserId" value=""/>
+    <input type="hidden" id="hiddenTermin" name="hiddenTermin" value=""/>
+</form>
+</body>
+</html>

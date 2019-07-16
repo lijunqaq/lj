@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.UserInfo" >
+    <id column="UserID" property="userID" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="ManagerID" property="managerID" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="Salary" property="salary" jdbcType="DOUBLE" />
+    <result column="Birthday" property="birthday" jdbcType="TIMESTAMP" />
+    <result column="Sex" property="sex" jdbcType="VARCHAR" />
+    <result column="Station" property="station" jdbcType="VARCHAR" />
+    <result column="Telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="Degree" property="degree" jdbcType="INTEGER" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="AddBy" property="addBy" jdbcType="VARCHAR" />
+    <result column="AddDept" property="addDept" jdbcType="VARCHAR" />
+    <result column="AddTime" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="ModifyBy" property="modifyBy" jdbcType="VARCHAR" />
+    <result column="ModifyTime" property="modifyTime" jdbcType="TIMESTAMP" />
+    <result column="Picture" property="picture" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    UserID, ManagerID,Name, CreateTime, Salary, Birthday, Sex, Station, Telephone, Degree, Remark,
+    email, AddBy, AddDept, AddTime, ModifyBy, ModifyTime,Picture
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where UserID = #{userID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from userinfo
+    where UserID = #{userID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.UserInfo" >
+    insert into userinfo (UserID, Name, CreateTime, 
+      Salary, Birthday, Sex, 
+      Station, Telephone, Degree, 
+      Remark, email, AddBy, 
+      AddDept, AddTime, ModifyBy, 
+      ModifyTime)
+    values (#{userID,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{salary,jdbcType=DOUBLE}, #{birthday,jdbcType=TIMESTAMP}, #{sex,jdbcType=VARCHAR}, 
+      #{station,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, #{degree,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{addBy,jdbcType=VARCHAR}, 
+      #{addDept,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.UserInfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userID != null" >
+        UserID,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="createTime != null" >
+        CreateTime,
+      </if>
+      <if test="salary != null" >
+        Salary,
+      </if>
+      <if test="birthday != null" >
+        Birthday,
+      </if>
+      <if test="sex != null" >
+        Sex,
+      </if>
+      <if test="station != null" >
+        Station,
+      </if>
+      <if test="telephone != null" >
+        Telephone,
+      </if>
+      <if test="degree != null" >
+        Degree,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="addBy != null" >
+        AddBy,
+      </if>
+      <if test="addDept != null" >
+        AddDept,
+      </if>
+      <if test="addTime != null" >
+        AddTime,
+      </if>
+      <if test="modifyBy != null" >
+        ModifyBy,
+      </if>
+      <if test="modifyTime != null" >
+        ModifyTime,
+      </if>
+      <if test="managerID != null" >
+        ManagerID,
+      </if>
+      <if test="picture != null" >
+        Picture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userID != null" >
+        #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null" >
+        #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addBy != null" >
+        #{addBy,jdbcType=VARCHAR},
+      </if>
+      <if test="addDept != null" >
+        #{addDept,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="managerID != null" >
+        #{managerID,jdbcType=TIMESTAMP},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.UserInfo" >
+    update userinfo
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="salary != null" >
+        Salary = #{salary,jdbcType=DOUBLE},
+      </if>
+      <if test="birthday != null" >
+        Birthday = #{birthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sex != null" >
+        Sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="station != null" >
+        Station = #{station,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        Telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="degree != null" >
+        Degree = #{degree,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="addBy != null" >
+        AddBy = #{addBy,jdbcType=VARCHAR},
+      </if>
+      <if test="addDept != null" >
+        AddDept = #{addDept,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        AddTime = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyBy != null" >
+        ModifyBy = #{modifyBy,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null" >
+        ModifyTime = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where UserID = #{userID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.UserInfo" >
+    update userinfo
+    set Name = #{name,jdbcType=VARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      Salary = #{salary,jdbcType=DOUBLE},
+      Birthday = #{birthday,jdbcType=TIMESTAMP},
+      Sex = #{sex,jdbcType=VARCHAR},
+      Station = #{station,jdbcType=VARCHAR},
+      Telephone = #{telephone,jdbcType=VARCHAR},
+      Degree = #{degree,jdbcType=INTEGER},
+      Remark = #{remark,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      AddBy = #{addBy,jdbcType=VARCHAR},
+      AddDept = #{addDept,jdbcType=VARCHAR},
+      AddTime = #{addTime,jdbcType=TIMESTAMP},
+      ModifyBy = #{modifyBy,jdbcType=VARCHAR},
+      ModifyTime = #{modifyTime,jdbcType=TIMESTAMP}
+    where UserID = #{userID,jdbcType=VARCHAR}
+  </update>
+</mapper>

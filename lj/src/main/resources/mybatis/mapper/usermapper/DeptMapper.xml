@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.Dept" >
+    <id column="KeyID" property="keyID" jdbcType="VARCHAR" />
+    <result column="DeptName" property="deptName" jdbcType="VARCHAR" />
+    <result column="State" property="state" jdbcType="BIGINT" />
+    <result column="ParentID" property="parentID" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    KeyID, DeptName, State, ParentID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where KeyID = #{keyID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dept
+    where KeyID = #{keyID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.Dept" >
+    insert into dept (KeyID, DeptName, State, 
+      ParentID)
+    values (#{keyID,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{state,jdbcType=BIGINT}, 
+      #{parentID,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.Dept" >
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyID != null" >
+        KeyID,
+      </if>
+      <if test="deptName != null" >
+        DeptName,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="parentID != null" >
+        ParentID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyID != null" >
+        #{keyID,jdbcType=VARCHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIGINT},
+      </if>
+      <if test="parentID != null" >
+        #{parentID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.Dept" >
+    update dept
+    <set >
+      <if test="deptName != null" >
+        DeptName = #{deptName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=BIGINT},
+      </if>
+      <if test="parentID != null" >
+        ParentID = #{parentID,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where KeyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.Dept" >
+    update dept
+    set DeptName = #{deptName,jdbcType=VARCHAR},
+      State = #{state,jdbcType=BIGINT},
+      ParentID = #{parentID,jdbcType=VARCHAR}
+    where KeyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectDeptList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from dept
+    where State = 1 limit 0,10
+  </select>
+
+  <select id="findByDept" resultMap="BaseResultMap" parameterType="com.example.lj.dao.entity.Dept" >
+    select
+    <include refid="Base_Column_List" />
+    from dept
+    where DeptName = #{deptName,jdbcType=VARCHAR}  limit 0,1
+  </select>
+
+  <insert id="insertByBatch" parameterType="java.util.List">
+    insert into  dept (KeyID, DeptName, State,ParentID)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.keyID,jdbcType=VARCHAR}, #{item.deptName,jdbcType=VARCHAR},#{item.state,jdbcType=BIGINT},#{item.parentID,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+
+</mapper>

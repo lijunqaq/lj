@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.ModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.Module" >
+    <id column="ModuleID" property="moduleID" jdbcType="VARCHAR" />
+    <result column="ParentID" property="parentID" jdbcType="VARCHAR" />
+    <result column="ParentName" property="parentName" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="LayerNum" property="layerNum" jdbcType="BIGINT" />
+    <result column="IsLeaf" property="isLeaf" jdbcType="BIGINT" />
+    <result column="Ico" property="ico" jdbcType="VARCHAR" />
+    <result column="Cpermission" property="cpermission" jdbcType="VARCHAR" />
+    <result column="Curl" property="curl" jdbcType="VARCHAR" />
+    <result column="Ctype" property="ctype" jdbcType="BIGINT" />
+    <result column="State" property="state" jdbcType="BIGINT" />
+    <result column="Belong" property="belong" jdbcType="VARCHAR" />
+    <result column="Cwihch" property="cwihch" jdbcType="VARCHAR" />
+    <result column="QuoteNum" property="quoteNum" jdbcType="BIGINT" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="OrderNo" property="orderNo" jdbcType="BIGINT" />
+    <result column="CreateBy" property="createBy" jdbcType="VARCHAR" />
+    <result column="CreateDept" property="createDept" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UpdateBy" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UpdateTime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ModuleID, ParentID, ParentName, Name, LayerNum, IsLeaf, Ico, Cpermission, Curl, Ctype, 
+    State, Belong, Cwihch, QuoteNum, Remark, OrderNo, CreateBy, CreateDept, CreateTime, 
+    UpdateBy, UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from module
+    where ModuleID = #{moduleID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from module
+    where ModuleID = #{moduleID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.Module" >
+    insert into module (ModuleID, ParentID, ParentName, 
+      Name, LayerNum, IsLeaf, 
+      Ico, Cpermission, Curl, 
+      Ctype, State, Belong, 
+      Cwihch, QuoteNum, Remark, 
+      OrderNo, CreateBy, CreateDept, 
+      CreateTime, UpdateBy, UpdateTime
+      )
+    values (#{moduleID,jdbcType=VARCHAR}, #{parentID,jdbcType=VARCHAR}, #{parentName,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{layerNum,jdbcType=BIGINT}, #{isLeaf,jdbcType=BIGINT}, 
+      #{ico,jdbcType=VARCHAR}, #{cpermission,jdbcType=VARCHAR}, #{curl,jdbcType=VARCHAR}, 
+      #{ctype,jdbcType=BIGINT}, #{state,jdbcType=BIGINT}, #{belong,jdbcType=VARCHAR}, 
+      #{cwihch,jdbcType=VARCHAR}, #{quoteNum,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR}, #{createDept,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.Module" >
+    insert into module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="moduleID != null" >
+        ModuleID,
+      </if>
+      <if test="parentID != null" >
+        ParentID,
+      </if>
+      <if test="parentName != null" >
+        ParentName,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="layerNum != null" >
+        LayerNum,
+      </if>
+      <if test="isLeaf != null" >
+        IsLeaf,
+      </if>
+      <if test="ico != null" >
+        Ico,
+      </if>
+      <if test="cpermission != null" >
+        Cpermission,
+      </if>
+      <if test="curl != null" >
+        Curl,
+      </if>
+      <if test="ctype != null" >
+        Ctype,
+      </if>
+      <if test="state != null" >
+        State,
+      </if>
+      <if test="belong != null" >
+        Belong,
+      </if>
+      <if test="cwihch != null" >
+        Cwihch,
+      </if>
+      <if test="quoteNum != null" >
+        QuoteNum,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="orderNo != null" >
+        OrderNo,
+      </if>
+      <if test="createBy != null" >
+        CreateBy,
+      </if>
+      <if test="createDept != null" >
+        CreateDept,
+      </if>
+      <if test="createTime != null" >
+        CreateTime,
+      </if>
+      <if test="updateBy != null" >
+        UpdateBy,
+      </if>
+      <if test="updateTime != null" >
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="moduleID != null" >
+        #{moduleID,jdbcType=VARCHAR},
+      </if>
+      <if test="parentID != null" >
+        #{parentID,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layerNum != null" >
+        #{layerNum,jdbcType=BIGINT},
+      </if>
+      <if test="isLeaf != null" >
+        #{isLeaf,jdbcType=BIGINT},
+      </if>
+      <if test="ico != null" >
+        #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="cpermission != null" >
+        #{cpermission,jdbcType=VARCHAR},
+      </if>
+      <if test="curl != null" >
+        #{curl,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        #{ctype,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=BIGINT},
+      </if>
+      <if test="belong != null" >
+        #{belong,jdbcType=VARCHAR},
+      </if>
+      <if test="cwihch != null" >
+        #{cwihch,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteNum != null" >
+        #{quoteNum,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDept != null" >
+        #{createDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.Module" >
+    update module
+    <set >
+      <if test="parentID != null" >
+        ParentID = #{parentID,jdbcType=VARCHAR},
+      </if>
+      <if test="parentName != null" >
+        ParentName = #{parentName,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="layerNum != null" >
+        LayerNum = #{layerNum,jdbcType=BIGINT},
+      </if>
+      <if test="isLeaf != null" >
+        IsLeaf = #{isLeaf,jdbcType=BIGINT},
+      </if>
+      <if test="ico != null" >
+        Ico = #{ico,jdbcType=VARCHAR},
+      </if>
+      <if test="cpermission != null" >
+        Cpermission = #{cpermission,jdbcType=VARCHAR},
+      </if>
+      <if test="curl != null" >
+        Curl = #{curl,jdbcType=VARCHAR},
+      </if>
+      <if test="ctype != null" >
+        Ctype = #{ctype,jdbcType=BIGINT},
+      </if>
+      <if test="state != null" >
+        State = #{state,jdbcType=BIGINT},
+      </if>
+      <if test="belong != null" >
+        Belong = #{belong,jdbcType=VARCHAR},
+      </if>
+      <if test="cwihch != null" >
+        Cwihch = #{cwihch,jdbcType=VARCHAR},
+      </if>
+      <if test="quoteNum != null" >
+        QuoteNum = #{quoteNum,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        OrderNo = #{orderNo,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        CreateBy = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDept != null" >
+        CreateDept = #{createDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UpdateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ModuleID = #{moduleID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.Module" >
+    update module
+    set ParentID = #{parentID,jdbcType=VARCHAR},
+      ParentName = #{parentName,jdbcType=VARCHAR},
+      Name = #{name,jdbcType=VARCHAR},
+      LayerNum = #{layerNum,jdbcType=BIGINT},
+      IsLeaf = #{isLeaf,jdbcType=BIGINT},
+      Ico = #{ico,jdbcType=VARCHAR},
+      Cpermission = #{cpermission,jdbcType=VARCHAR},
+      Curl = #{curl,jdbcType=VARCHAR},
+      Ctype = #{ctype,jdbcType=BIGINT},
+      State = #{state,jdbcType=BIGINT},
+      Belong = #{belong,jdbcType=VARCHAR},
+      Cwihch = #{cwihch,jdbcType=VARCHAR},
+      QuoteNum = #{quoteNum,jdbcType=BIGINT},
+      Remark = #{remark,jdbcType=VARCHAR},
+      OrderNo = #{orderNo,jdbcType=BIGINT},
+      CreateBy = #{createBy,jdbcType=VARCHAR},
+      CreateDept = #{createDept,jdbcType=VARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      UpdateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where ModuleID = #{moduleID,jdbcType=VARCHAR}
+  </update>
+</mapper>

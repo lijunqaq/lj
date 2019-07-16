@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.Role" >
+    <id column="RoleID" property="roleID" jdbcType="VARCHAR" />
+    <result column="Name" property="name" jdbcType="VARCHAR" />
+    <result column="Remark" property="remark" jdbcType="VARCHAR" />
+    <result column="OrderNo" property="orderNo" jdbcType="INTEGER" />
+    <result column="CreateBy" property="createBy" jdbcType="VARCHAR" />
+    <result column="CreateDept" property="createDept" jdbcType="VARCHAR" />
+    <result column="CreateTime" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UpdateBy" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UpdateTime" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    RoleID, Name, Remark, OrderNo, CreateBy, CreateDept, CreateTime, UpdateBy, UpdateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where RoleID = #{roleID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from role
+    where RoleID = #{roleID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.Role" >
+    insert into role (RoleID, Name, Remark, 
+      OrderNo, CreateBy, CreateDept, 
+      CreateTime, UpdateBy, UpdateTime
+      )
+    values (#{roleID,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{orderNo,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, #{createDept,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleID != null" >
+        RoleID,
+      </if>
+      <if test="name != null" >
+        Name,
+      </if>
+      <if test="remark != null" >
+        Remark,
+      </if>
+      <if test="orderNo != null" >
+        OrderNo,
+      </if>
+      <if test="createBy != null" >
+        CreateBy,
+      </if>
+      <if test="createDept != null" >
+        CreateDept,
+      </if>
+      <if test="createTime != null" >
+        CreateTime,
+      </if>
+      <if test="updateBy != null" >
+        UpdateBy,
+      </if>
+      <if test="updateTime != null" >
+        UpdateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleID != null" >
+        #{roleID,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDept != null" >
+        #{createDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.Role" >
+    update role
+    <set >
+      <if test="name != null" >
+        Name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        Remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        OrderNo = #{orderNo,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        CreateBy = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDept != null" >
+        CreateDept = #{createDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UpdateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where RoleID = #{roleID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.Role" >
+    update role
+    set Name = #{name,jdbcType=VARCHAR},
+      Remark = #{remark,jdbcType=VARCHAR},
+      OrderNo = #{orderNo,jdbcType=INTEGER},
+      CreateBy = #{createBy,jdbcType=VARCHAR},
+      CreateDept = #{createDept,jdbcType=VARCHAR},
+      CreateTime = #{createTime,jdbcType=TIMESTAMP},
+      UpdateBy = #{updateBy,jdbcType=VARCHAR},
+      UpdateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where RoleID = #{roleID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectRoleList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from role
+  </select>
+
+</mapper>

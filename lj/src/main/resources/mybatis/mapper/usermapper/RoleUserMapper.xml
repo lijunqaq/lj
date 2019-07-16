@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.RoleUserMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.RoleUser" >
+    <id column="UserID" property="userID" jdbcType="VARCHAR" />
+    <id column="RoleID" property="roleID" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    UserID, RoleID
+  </sql>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from roleuser
+    where UserID = #{userID,jdbcType=VARCHAR}
+      and RoleID = #{roleID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.RoleUser" >
+    insert into roleuser (UserID, RoleID)
+    values (#{userID,jdbcType=VARCHAR}, #{roleID,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.RoleUser" >
+    insert into roleuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userID != null" >
+        UserID,
+      </if>
+      <if test="roleID != null" >
+        RoleID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userID != null" >
+        #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="roleID != null" >
+        #{roleID,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="selectByUserID" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from roleuser
+    where UserID = #{userID,jdbcType=VARCHAR}
+  </select>
+
+</mapper>

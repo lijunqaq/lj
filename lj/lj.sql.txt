@@ -1,0 +1,24 @@
+
+CREATE TABLE `MODULE` (
+  `ModuleID` varchar(255) COLLATE utf8_bin NOT NULL,
+  `ParentID` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `ParentName` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `LayerNum` bigint(20) DEFAULT NULL,
+  `IsLeaf` bigint(20) DEFAULT NULL,
+  `Ico` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Cpermission` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Curl` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Ctype` bigint(20) DEFAULT NULL,
+  `State` bigint(20) DEFAULT NULL,
+  `Belong` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `Cwihch` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `QuoteNum` bigint(20) DEFAULT NULL,
+  `Remark` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `OrderNo` bigint(20) DEFAULT NULL,
+  `CreateBy` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `CreateTime` datetime DEFAULT NULL,
+  `UpdateBy` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `UpdateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`ModuleID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

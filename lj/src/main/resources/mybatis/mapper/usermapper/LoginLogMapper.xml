@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.lj.dao.mapper.LoginLogMapper" >
+  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.LoginLog" >
+    <id column="keyID" property="keyID" jdbcType="VARCHAR" />
+    <result column="LoginName" property="loginName" jdbcType="VARCHAR" />
+    <result column="IpAdress" property="ipAdress" jdbcType="VARCHAR" />
+    <result column="LoginTime" property="loginTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    keyID, LoginName, IpAdress, LoginTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from loginlog
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from loginlog
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.lj.dao.entity.LoginLog" >
+    insert into loginlog (keyID, LoginName, IpAdress, 
+      LoginTime)
+    values (#{keyID,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, #{ipAdress,jdbcType=VARCHAR}, 
+      #{loginTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.LoginLog" >
+    insert into loginlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyID != null" >
+        keyID,
+      </if>
+      <if test="loginName != null" >
+        LoginName,
+      </if>
+      <if test="ipAdress != null" >
+        IpAdress,
+      </if>
+      <if test="loginTime != null" >
+        LoginTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyID != null" >
+        #{keyID,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAdress != null" >
+        #{ipAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.LoginLog" >
+    update loginlog
+    <set >
+      <if test="loginName != null" >
+        LoginName = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAdress != null" >
+        IpAdress = #{ipAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        LoginTime = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.LoginLog" >
+    update loginlog
+    set LoginName = #{loginName,jdbcType=VARCHAR},
+      IpAdress = #{ipAdress,jdbcType=VARCHAR},
+      LoginTime = #{loginTime,jdbcType=TIMESTAMP}
+    where keyID = #{keyID,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByIP" resultType="com.example.lj.dto.IpNumOutDTO" parameterType="java.lang.String" >
+    select
+    IpAdress ip,count(IpAdress) num
+
+    from loginlog
+    group by IpAdress
+  </select>
+
+</mapper>
