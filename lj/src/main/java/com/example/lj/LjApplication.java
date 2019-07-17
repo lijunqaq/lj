@@ -10,7 +10,7 @@ public class LjApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LjApplication.class, args);
-        System.out.println("(♥◠‿◠)ﾉﾞ  伍六七启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
+        System.err.println("(♥◠‿◠)ﾉﾞ  伍六七启动成功   ლ(´ڡ`ლ)ﾞ  \n" +
                 " .-------.       ____     __        \n" +
                 " |  _ _   \\      \\   \\   /  /    \n" +
                 " | ( ' )  |       \\  _. /  '       \n" +
