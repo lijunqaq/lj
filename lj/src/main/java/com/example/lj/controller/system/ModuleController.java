@@ -1,86 +1,83 @@
-//package com.example.lj.controller.system;
-//
-//import com.yaorange.jk.entity.Module;
-//import com.yaorange.jk.entity.Role;
-//import com.yaorange.jk.entity.vo.ZtreeVO;
-//import com.yaorange.jk.service.ModuleService;
-//import com.yaorange.jk.service.RoleService;
-//import com.yaorange.jk.utils.Pagination;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//import java.util.Set;
-//
-///**
-// * 〈module控制器〉
-// *
-// * @author coach tam
-// * @email 1077@qq.com
-// * @create 2018/8/9
-// * @since 1.0.0
-// * 〈坚持灵活 灵活坚持〉
-// */
-//
-//
-//@RestController
-//@RequestMapping("/system/module")
-//public class ModuleController {
-//@Autowired
-//private ModuleService moduleService;
-//    @Autowired
-//    private RoleService roleService;
-//    /**
-//     *  分页查询
-//     * @param pageSize
-//     * @param pageNo
-//     * @return Pagination
-//     */
-//    @GetMapping
-//    public Pagination page(Integer pageSize, Integer pageNo,String keyWord){
-//        Pagination result=null;
-//        result=moduleService.findBypage(pageSize,pageNo,keyWord);
-//        return result;
-//    }
-//
-//    //查询父模块
-//    @GetMapping("/getParent/{ctype}")
-//    public List<Module> getParent(@PathVariable("ctype") Integer ctype){
-//        List<Module> result=null;
-//        result=moduleService.getParent(ctype);
-//        return result;
-//    }
-//    /**
-//     * 添加模块
-//     * @param
-//     * @return
-//     */
-//    @PostMapping
-//    public String  addModule(@RequestBody Module module){
-//        moduleService.addModule(module);
-//        return "ok";
-//    }
-//    /**
-//     * 删除模块
-//     * @param groupId
-//     * @return
-//     */
-//    @DeleteMapping
-//    public String  deleteModule(@RequestBody String[] groupId){
-//        moduleService.deleteModule(groupId);
-//        return "ok";
-//    }
-//    /**
-//     * 更新模块
-//     * @param module
-//     * @return
-//     */
-//    @PutMapping
-//    public String  updateModule(@RequestBody Module module){
-//        moduleService.updateModule(module);
-//        return "ok";
-//    }
+package com.example.lj.controller.system;
+
+import com.example.lj.dao.entity.Module;
+import com.example.lj.dto.Page;
+import com.example.lj.service.ModuleService;
+import com.example.lj.service.RoleService;
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/**
+ * 〈module控制器〉
+ *
+ * @author coach tam
+ * @email 1077@qq.com
+ * @create 2018/8/9
+ * @since 1.0.0
+ * 〈坚持灵活 灵活坚持〉
+ */
+
+
+@RestController
+@RequestMapping("/v1/system/module")
+@Api(tags = "module",description = "模块相关api接口")
+public class ModuleController {
+@Autowired
+private ModuleService moduleService;
+    @Autowired
+    private RoleService roleService;
+    /**
+     *  分页查询
+     * @param pageSize
+     * @param pageNo
+     * @return Pagination
+     */
+    @GetMapping
+    public Page<List<Module>> page(Integer pageSize, Integer pageNo, String keyWord){
+        Page<List<Module>>   result=moduleService.findBypage(pageSize,pageNo,keyWord);
+        return result;
+    }
+
+    //查询父模块
+    @GetMapping("/getParent/{ctype}")
+    public List<Module> getParent(@PathVariable("ctype") Integer ctype){
+        List<Module> result=null;
+        result=moduleService.getParent(ctype);
+        return result;
+    }
+    /**
+     * 添加模块
+     * @param
+     * @return
+     */
+    @PostMapping
+    public String  addModule(@RequestBody Module module){
+        moduleService.addModule(module);
+        return "ok";
+    }
+    /**
+     * 删除模块
+     * @param groupId
+     * @return
+     */
+    @DeleteMapping
+    public String  deleteModule(@RequestBody String[] groupId){
+        moduleService.deleteModule(groupId);
+        return "ok";
+    }
+    /**
+     * 更新模块
+     * @param module
+     * @return
+     */
+    @PutMapping
+    public String  updateModule(@RequestBody Module module){
+        moduleService.updateModule(module);
+        return "ok";
+    }
 //    /**
 //     *
 //     *
@@ -136,4 +133,4 @@
 //
 //        return ztreeList;
 //    }
-//}
+}

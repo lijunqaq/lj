@@ -3,6 +3,8 @@ package com.example.lj.dao.mapper;
 
 import com.example.lj.dao.entity.Module;
 
+import java.util.List;
+
 public interface ModuleMapper {
     int deleteByPrimaryKey(String moduleID);
 
@@ -16,4 +18,5 @@ public interface ModuleMapper {
 
     int updateByPrimaryKey(Module record);
 
+    List<Module> findAll();
 }

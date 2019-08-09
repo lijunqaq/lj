@@ -280,4 +280,10 @@
       UpdateTime = #{updateTime,jdbcType=TIMESTAMP}
     where ModuleID = #{moduleID,jdbcType=VARCHAR}
   </update>
+  <select id="findAll" resultMap="BaseResultMap"  >
+    select
+    <include refid="Base_Column_List" />
+    from module
+  </select>
+
 </mapper>

@@ -3,20 +3,29 @@ package com.example.lj;
 import com.example.lj.dao.entity.Dept;
 import com.example.lj.dao.mapper.DeptMapper;
 import com.example.lj.dao.mapper.LoginLogMapper;
+import com.example.lj.romote.InvokeException;
+import com.example.lj.romote.ResidentLastVisitDateDTO;
+import com.example.lj.romote.ResidentLastVisitDateQueryVO;
+import com.example.lj.romote.ResponseData;
 import com.example.lj.service.DeptService;
 import com.example.lj.service.LoginLogService;
 import com.example.lj.service.UserService;
 import com.example.lj.utils.RedisUtil;
+import com.example.lj.utils.RestTemplateInsiUtils;
+import com.example.lj.utils.utils.DateUtil;
 import com.google.common.collect.Lists;
-import org.apache.commons.beanutils.ConvertUtils;
+import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -35,6 +44,8 @@ public class test2 {
     @Autowired
     private DeptMapper deptMapper;
 
+    @Autowired
+    RestTemplateInsiUtils restTemplateUtils;
 
     @Autowired
     private LoginLogService loginLogService;
@@ -97,14 +108,39 @@ public class test2 {
 
     @Test
     public void contextLoads24() {
-        String str="1,2,3,4";
-        String[] strs=str.split(",");
-        long[] convert = (long[]) ConvertUtils.convert(strs, long.class);
-        for (int i=0;i<convert.length;i++){
-            System.err.println(convert[i]+"---------");
+          String str="Wed Jul 03 2019 00:00:00 GMT+0800";
+        try {
+            Date date = DateUtil.date(str);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+//        String[] strs=str.split(",");
+//        long[] convert = (long[]) ConvertUtils.convert(strs, long.class);
+//        for (int i=0;i<convert.length;i++){
+//            System.err.println(convert[i]+"---------");
+//        }
 
 
+
+    }
+
+    @Test
+    public void contextLoads34() {
+        String url = "/v1/inside/api/visitRecord/queryLastVisitDateByResidentIdAndYear";
+        ResidentLastVisitDateQueryVO residentLastVisitDateQueryVO = new ResidentLastVisitDateQueryVO();
+        residentLastVisitDateQueryVO.setResidentId(1l);
+        residentLastVisitDateQueryVO.setYear(2019);
+        residentLastVisitDateQueryVO.setGroupTypes("1,2,3,4,5,6,7,8,9");
+
+
+        try {
+            ResponseData<ResidentLastVisitDateDTO> rd = restTemplateUtils.invokeRestTemplateList(url, residentLastVisitDateQueryVO, ResidentLastVisitDateDTO.class, HttpMethod.POST);
+            Gson gson = new Gson();
+            gson.toJson( rd.getDataList());
+        } catch (Exception e) {
+            throw new InvokeException("接口调用异常:" + e.getMessage());
+        }
     }
 
 }

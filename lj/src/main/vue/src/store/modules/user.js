@@ -1,10 +1,11 @@
 import Cookies from 'js-cookie';
 import fetch from '../../utils/fetch';
+import fetch1 from '../../utils/fetch1';
 const user = {
     state: {},
     mutations: {
         logout (state, vm) {
-            fetch({
+            fetch1({
                 url:'login/logout',
                 method:'post'
             }).then((resp)=>{

@@ -1,0 +1,49 @@
+eureka:
+  client:
+    registerWithEureka: false        # 所有服务都要作为 eureka客户端 注册到 eureka服务端；
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  # 服务端口
+  port: 8888
+spring:
+  application:
+    name: spring-lj-admin
+  datasource:
+    userdb:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/lj?useUnicode=true&characterEncoding=utf8
+     username: root
+     password: 123
+     type: com.alibaba.druid.pool.DruidDataSource
+     # 初始连接数
+     initialSize: 5
+      # 最小连接池数量
+     minIdle: 10
+      # 最大连接池数量
+     maxActive: 20
+      # 配置获取连接等待超时的时间
+     maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+     timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+     minEvictableIdleTimeMillis: 300000
+      # 配置一个连接在池中最大生存的时间，单位是毫秒
+     maxEvictableIdleTimeMillis: 900000
+      # 配置检测连接是否有效
+     validationQuery: SELECT 1 FROM DUAL
+     testWhileIdle: true
+     testOnBorrow: false
+     testOnReturn: false
+  redis:
+    host: 192.168.48.128
+    port: 6379
+    timeout: 20000
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+    password:
+

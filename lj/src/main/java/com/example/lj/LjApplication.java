@@ -3,9 +3,11 @@ package com.example.lj;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.retry.annotation.EnableRetry;
 
 @SpringBootApplication
 @MapperScan("com.example.lj.dao.mapper")
+@EnableRetry
 public class LjApplication {
 
     public static void main(String[] args) {

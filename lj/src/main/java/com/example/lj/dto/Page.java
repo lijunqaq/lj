@@ -9,7 +9,7 @@ package com.example.lj.dto;
 public class Page<T> {
     private int pageNo;
     private int pageSize;
-    private int totalCount;
+    private long totalCount;
     private T dataList;
 
     public int getPageNo() {
@@ -28,11 +28,11 @@ public class Page<T> {
         this.pageSize = pageSize;
     }
 
-    public int getTotalCount() {
+    public long getTotalCount() {
         return totalCount;
     }
 
-    public void setTotalCount(int totalCount) {
+    public void setTotalCount(long totalCount) {
         this.totalCount = totalCount;
     }
 

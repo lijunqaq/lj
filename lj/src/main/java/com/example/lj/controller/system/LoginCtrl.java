@@ -1,5 +1,5 @@
-package com.example.lj.controller.system;/*
-package com.yaorange.jk.web.system;
+package com.example.lj.controller.system;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-*
+/**
  * 〈〉
  *
  * @author coach tam
@@ -21,8 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  * @create 2018/8/15
  * @since 1.0.0
  * 〈坚持灵活 灵活坚持〉
-
-
+ */
 
 @RestController
 @RequestMapping("/login")
@@ -43,4 +42,3 @@ public class LoginCtrl {
     }
 }
 
-*/
