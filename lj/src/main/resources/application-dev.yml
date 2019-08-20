@@ -6,7 +6,7 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 server:
   # 服务端口
-  port: 8888
+  port: 8567
 spring:
   application:
     name: spring-lj-admin
