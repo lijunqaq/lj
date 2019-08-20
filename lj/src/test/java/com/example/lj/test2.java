@@ -142,12 +142,7 @@ public class test2 {
             throw new InvokeException("接口调用异常:" + e.getMessage());
         }
     }
-    @Test
-    public void  testString5(){
-
-        String str="接口调用异常:Cannot locate recovery method; nested exception is com.ybs.phl.common.exception.InvokeException: 调用家签接口成功，但返回信息异常，异常信息为:该居民档案已存在，请检查证件号是否正确===============";
-        StringUtils.
-    }
+   
 
 }
 
