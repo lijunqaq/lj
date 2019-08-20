@@ -142,7 +142,7 @@ public class test2 {
             throw new InvokeException("接口调用异常:" + e.getMessage());
         }
     }
-   
+
 
 }
 

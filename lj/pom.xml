@@ -268,7 +268,7 @@
             </plugin>
 
         </plugins>
-        <finalName>x</finalName>
+        <finalName>li-admin</finalName>
     </build>
 
 
