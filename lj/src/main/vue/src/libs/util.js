@@ -257,12 +257,12 @@ util.checkUpdate = function (vm) {
         vm.$Notice.config({
             duration: 0
         });
-        if (semver.lt(packjson.version, version)) {
-            vm.$Notice.info({
-                title: 'iview-admin更新啦',
-                desc: '<p>iView-admin更新到了' + version + '了，去看看有哪些变化吧</p><a style="font-size:13px;" href="https://github.com/iview/iview-admin/releases" target="_blank">前往github查看</a>'
-            });
-        }
+        // if (semver.lt(packjson.version, version)) {
+        //     vm.$Notice.info({
+        //         title: 'iview-admin更新啦',
+        //         desc: '<p>iView-admin更新到了' + version + '了，去看看有哪些变化吧</p><a style="font-size:13px;" href="https://github.com/iview/iview-admin/releases" target="_blank">前往github查看</a>'
+        //     });
+        // }
     });
 };
 
