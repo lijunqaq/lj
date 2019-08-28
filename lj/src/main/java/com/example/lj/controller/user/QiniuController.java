@@ -25,7 +25,7 @@ public class QiniuController {
     @Autowired
     private AliServiceImpl aliService;
     private static String fpath="http://pon8smknt.bkt.clouddn.com/";
-    private static String Alipath="https://lijunqaq.oss-cn-shenzhen.aliyuncs.com/img/";
+    private static String Alipath="https://lijunqaq.oss-cn-shenzhen.aliyuncs.com/";
 
 
 //	 /**
@@ -71,10 +71,10 @@ public class QiniuController {
 
         //url += "http://你的BucketName.你的Endpoint/自定义路径/" + fileName;
 
-        String path = UUID.randomUUID()+"";
+        String path = UUID.randomUUID()+".jpg";
         AliOssUtil.uploadByte(inputStream,path);
 
-        return fpath+path;
+        return Alipath+path;
     }
 
 

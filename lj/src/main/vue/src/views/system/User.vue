@@ -762,8 +762,9 @@
                 }
                 console.log("====="+formData);
                 console.log("====="+this.file);
-                //localhost
-                fetch.post('http://lijunqaq.top:8888/img/qiniu', formData,config)
+                //
+                //http://lijunqaq.top:8888
+                fetch.post('http://lijunqaq.top:8888/v1/img/qiniu', formData,config)
                     .then((response) =>{
                         this.addForm.picture=response.data;
                         this.$Message.success('Success!');

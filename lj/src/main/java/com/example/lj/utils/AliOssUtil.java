@@ -2,6 +2,7 @@ package com.example.lj.utils;
 
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.model.ObjectMetadata;
 
 import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
@@ -38,10 +39,11 @@ public class AliOssUtil {
 
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
-
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentType("image/jpeg");
         // 上传Byte数组。
         // 上传到OSS
-        ossClient.putObject(bucketName, fileName, inputStream);
+        ossClient.putObject(bucketName,fileName, inputStream,metadata);
        // ossClient.putObject("<yourBucketName>", "<yourObjectName>", new ByteArrayInputStream(content));
 
         // 关闭OSSClient。
