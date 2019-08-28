@@ -12,20 +12,18 @@ import com.example.lj.service.LoginLogService;
 import com.example.lj.service.UserService;
 import com.example.lj.utils.RedisUtil;
 import com.example.lj.utils.RestTemplateInsiUtils;
-import com.example.lj.utils.utils.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -108,20 +106,19 @@ public class test2 {
 
     @Test
     public void contextLoads24() {
-          String str="Wed Jul 03 2019 00:00:00 GMT+0800";
-        try {
-            Date date = DateUtil.date(str);
+        ResidentLastVisitDateQueryVO a = new ResidentLastVisitDateQueryVO();
+        ResidentLastVisitDateQueryVO b = new ResidentLastVisitDateQueryVO();
+        a.setYear(2019);
+        BeanUtils.copyProperties(a,b);
+        System.out.println(b.getYear());
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-//        String[] strs=str.split(",");
-//        long[] convert = (long[]) ConvertUtils.convert(strs, long.class);
-//        for (int i=0;i<convert.length;i++){
-//            System.err.println(convert[i]+"---------");
-//        }
-
-
+        String str ="[\"04CC82E2710E4322B6A154CDE17FE16C\",\"3F021560F49B4EB79575A3F99ED1380B\"]";
+        //String parse = (String)Arrays.asList(JSON.parse(str));
+//        str.trim().replace("[","").replace("]","").replace("\"");
+//        str.replace("[","");
+//        str.replace("]","");
+//        List<String> strings =
+//        String join1 = Arrays.asList(JSON.parse(str)).stream().collect(Collectors.joining(","));
 
     }
 
@@ -143,6 +140,22 @@ public class test2 {
         }
     }
 
+    @Test
+    public void contextLoads241() {
+    String str ="5125123x";
+        String s = str.toUpperCase();
 
+
+        System.err.println(s);
+    }
+
+
+    @Test
+    public void ossTest() {
+
+
+
+        System.err.println("1");
+    }
 }
 

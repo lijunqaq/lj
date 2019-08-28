@@ -2,6 +2,7 @@ package com.example.lj.controller.user;
 
 import com.example.lj.service.impl.AliServiceImpl;
 import com.example.lj.service.impl.QiNiuServiceImpl;
+import com.example.lj.utils.AliOssUtil;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,30 +25,56 @@ public class QiniuController {
     @Autowired
     private AliServiceImpl aliService;
     private static String fpath="http://pon8smknt.bkt.clouddn.com/";
+    private static String Alipath="https://lijunqaq.oss-cn-shenzhen.aliyuncs.com/img/";
 
-	 /**
-     * 上传文件到七牛云存储
-     * @param multipartFile
+
+//	 /**
+//     * 上传文件到七牛云存储
+//     * @param multipartFile
+//     * @return
+//     * @throws IOException
+//     */
+//    @PostMapping("/img/qiniu")
+//    @ResponseBody
+//    public String uploadImgQiniu(@RequestParam("qiniuimg") MultipartFile multipartFile) throws IOException {
+//        FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
+//       // String  path1="曹操"+"_"+UUID.randomUUID();
+//
+//        byte[] byt = new byte[inputStream.available()];
+//
+//        inputStream.read(byt);
+//        String path = UUID.randomUUID()+"";
+//        String path1 = qiniuService.uploadObject(byt,path);
+//
+//        //   aliService.getUptoken(byt,"sssa");
+//
+////        empService.saveUser(user);
+////		model.addAttribute("info","恭喜您，添加员工成功");
+//		return fpath+path1;
+//    }
+
+
+    /**
+     * 上传文件到阿里云oss
+     * @param
      * @return
      * @throws IOException
      */
     @PostMapping("/img/qiniu")
     @ResponseBody
-    public String uploadImgQiniu(@RequestParam("qiniuimg") MultipartFile multipartFile) throws IOException {
+    public String uploadImgAliOSS(@RequestParam("qiniuimg") MultipartFile multipartFile) throws IOException {
         FileInputStream inputStream = (FileInputStream) multipartFile.getInputStream();
-       // String  path1="曹操"+"_"+UUID.randomUUID();
 
         byte[] byt = new byte[inputStream.available()];
 
-        inputStream.read(byt);
+
+
+        //url += "http://你的BucketName.你的Endpoint/自定义路径/" + fileName;
+
         String path = UUID.randomUUID()+"";
-        String path1 = qiniuService.uploadObject(byt,path);
+        AliOssUtil.uploadByte(inputStream,path);
 
-        //   aliService.getUptoken(byt,"sssa");
-
-//        empService.saveUser(user);
-//		model.addAttribute("info","恭喜您，添加员工成功");
-		return fpath+path1;
+        return fpath+path;
     }
 
 
