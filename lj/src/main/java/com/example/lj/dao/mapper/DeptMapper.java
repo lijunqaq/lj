@@ -1,14 +1,15 @@
 package com.example.lj.dao.mapper;
 
 
+import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.example.lj.dao.entity.Dept;
 
 import java.util.List;
 
-public interface DeptMapper {
+public interface DeptMapper extends BaseMapper<Dept> {
     int deleteByPrimaryKey(String keyID);
 
-    int insert(Dept record);
+//    int insert(Dept record);
 
     int insertSelective(Dept record);
 

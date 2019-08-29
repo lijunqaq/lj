@@ -27,4 +27,6 @@ public class GlobalCorsConfiguration {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
+
+
 }

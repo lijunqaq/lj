@@ -13,11 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Controller耗时记录 拦截器
  *
- * @author Wang Jialiang
- * @version 1.0.0
- * @date 2017/11/13
- * @see
- * @since
  */
 @Component
 public class TimeLogInterceptor implements HandlerInterceptor {
@@ -36,27 +31,21 @@ public class TimeLogInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        String handlerName = handlerMethod.getBean().getClass().getSimpleName();
-        String handlerMethodName = handlerMethod.getMethod().getName();
-
-        Long start = (Long) request.getAttribute(TimeLogInterceptor.REQUEST_ATTR_KEY_TIME_START);
-
-//        log.info("Interceptor postHandle 记录 {}.{}() 执行耗时: {}ms", handlerName, handlerMethodName, (System.currentTimeMillis() - start));
     }
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        //log.debug("{} afterCompletion");
-
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        String handlerName = handlerMethod.getBean().getClass().getSimpleName();
-        String handlerMethodName = handlerMethod.getMethod().getName();
-        //
         String uri = request.getRequestURI();
-
         Long start = (Long) request.getAttribute(TimeLogInterceptor.REQUEST_ATTR_KEY_TIME_START);
-        log.info("执行耗时记录: {}.{}() : {} ms; uri={}", handlerName, handlerMethodName, (System.currentTimeMillis() - start), uri);
+
+        //访问静态资源走else
+        if(handler instanceof HandlerMethod){
+            HandlerMethod handlerMethod = (HandlerMethod) handler;
+            String handlerName = handlerMethod.getBean().getClass().getSimpleName();
+            String handlerMethodName = handlerMethod.getMethod().getName();
+            log.info("执行耗时记录: {}.{}() : {} ms; uri={}", handlerName, handlerMethodName, (System.currentTimeMillis() - start), uri);
+        }else{
+            log.info("访问静态资源执行耗时记录:  : {} ms; uri={}", (System.currentTimeMillis() - start), uri);
+        }
     }
 }

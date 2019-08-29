@@ -46,4 +46,10 @@ spring:
       max-idle: 8
       max-wait: -1
     password:
-
+---
+mybatis-plus:
+  global-config:
+    banner: false
+    db-config:
+      id-type: auto
+  mapper-locations: classpath*:mapper/*.xml

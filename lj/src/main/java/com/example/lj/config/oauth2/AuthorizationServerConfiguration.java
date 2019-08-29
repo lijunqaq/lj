@@ -1,5 +1,6 @@
 package com.example.lj.config.oauth2;
 
+import com.example.lj.filter.TimeLogInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Autowired
     private TokenStore tokenStore;
+
+    @Autowired
+    private TimeLogInterceptor timeLogInterceptor;
 
 
     @Autowired
@@ -53,6 +57,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager);
+//                .addInterceptor(timeLogInterceptor);
     }
 
     @Override

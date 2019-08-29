@@ -32,7 +32,7 @@ public class LogFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-//在过滤器调用 logservice
+        //在过滤器调用 logservice
         ServletContext servletContext = filterConfig.getServletContext();
         WebApplicationContext cxt = WebApplicationContextUtils.getWebApplicationContext(servletContext);
         if (cxt!=null && cxt.getBean(LoginLogService.class)!=null && loginLogService ==null) {
