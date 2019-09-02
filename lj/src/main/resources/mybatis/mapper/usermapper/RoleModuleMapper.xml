@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.lj.dao.mapper.RoleModuleMapper" >
-  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.RoleModule" >
+<mapper namespace="com.yizhu.lj.dao.mapper.RoleModuleMapper" >
+  <resultMap id="BaseResultMap" type="com.yizhu.lj.dao.entity.RoleModule" >
     <id column="RoleID" property="roleID" jdbcType="VARCHAR" />
     <id column="ModuleID" property="moduleID" jdbcType="VARCHAR" />
   </resultMap>
@@ -13,11 +13,11 @@
     where RoleID = #{roleID,jdbcType=VARCHAR}
       and ModuleID = #{moduleID,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.lj.dao.entity.RoleModule" >
+  <insert id="insert" parameterType="com.yizhu.lj.dao.entity.RoleModule" >
     insert into rolemodule (RoleID, ModuleID)
     values (#{roleID,jdbcType=VARCHAR}, #{moduleID,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.RoleModule" >
+  <insert id="insertSelective" parameterType="com.yizhu.lj.dao.entity.RoleModule" >
     insert into rolemodule
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="roleID != null" >

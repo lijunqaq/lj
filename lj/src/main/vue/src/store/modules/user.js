@@ -5,9 +5,11 @@ const user = {
     state: {},
     mutations: {
         logout (state, vm) {
+            let access_token = Cookies.get('access_token');
             fetch1({
                 url:'login/logout',
-                method:'post'
+                method:'post',
+                params:{"access_token": access_token}
             }).then((resp)=>{
             })
             Cookies.remove('access_token');

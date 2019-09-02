@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.lj.dao.mapper.DeptMapper" >
-  <resultMap id="BaseResultMap" type="com.example.lj.dao.entity.Dept" >
+<mapper namespace="com.yizhu.lj.dao.mapper.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.yizhu.lj.dao.entity.Dept" >
     <id column="KeyID" property="keyID" jdbcType="VARCHAR" />
     <result column="DeptName" property="deptName" jdbcType="VARCHAR" />
     <result column="State" property="state" jdbcType="BIGINT" />
@@ -20,13 +20,13 @@
     delete from dept
     where KeyID = #{keyID,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.example.lj.dao.entity.Dept" >
+  <insert id="insert" parameterType="com.yizhu.lj.dao.entity.Dept" >
     insert into dept (KeyID, DeptName, State, 
       ParentID)
     values (#{keyID,jdbcType=VARCHAR}, #{deptName,jdbcType=VARCHAR}, #{state,jdbcType=BIGINT}, 
       #{parentID,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.lj.dao.entity.Dept" >
+  <insert id="insertSelective" parameterType="com.yizhu.lj.dao.entity.Dept" >
     insert into dept
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="keyID != null" >
@@ -57,7 +57,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.example.lj.dao.entity.Dept" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.yizhu.lj.dao.entity.Dept" >
     update dept
     <set >
       <if test="deptName != null" >
@@ -72,7 +72,7 @@
     </set>
     where KeyID = #{keyID,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.example.lj.dao.entity.Dept" >
+  <update id="updateByPrimaryKey" parameterType="com.yizhu.lj.dao.entity.Dept" >
     update dept
     set DeptName = #{deptName,jdbcType=VARCHAR},
       State = #{state,jdbcType=BIGINT},
@@ -86,7 +86,7 @@
     where State = 1 limit 0,10
   </select>
 
-  <select id="findByDept" resultMap="BaseResultMap" parameterType="com.example.lj.dao.entity.Dept" >
+  <select id="findByDept" resultMap="BaseResultMap" parameterType="com.yizhu.lj.dao.entity.Dept" >
     select
     <include refid="Base_Column_List" />
     from dept
