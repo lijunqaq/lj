@@ -55,7 +55,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .cors()
                 .and()
                 .csrf().disable();
-        http.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+                 http.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
 
     }
 

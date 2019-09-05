@@ -44,7 +44,7 @@ public class Swagger {
         Docket  docket=   new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.example.lj.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yizhu.lj.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .globalOperationParameters(pars);
