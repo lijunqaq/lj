@@ -80,6 +80,7 @@ const app = {
             }).then(resp=>{
                 let permissions = resp.data;
                 //将appRouter过滤成当前用户菜单路由
+            //debugger
                 menuList=filterAsyncRouter(appRouter, permissions);
                 state.menuList = menuList;
             })

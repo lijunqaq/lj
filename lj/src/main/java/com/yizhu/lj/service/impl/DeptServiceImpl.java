@@ -33,7 +33,7 @@ public class DeptServiceImpl implements DeptService {
     private ModuleMapper moduleMapper;
     @Autowired
     private RoleUserMapper roleUserMapper;
-    ExecutorService pool  = Executors.newFixedThreadPool(10);
+    ExecutorService pool  = Executors.newFixedThreadPool(20);
 
     /**
      * 查询所有部门

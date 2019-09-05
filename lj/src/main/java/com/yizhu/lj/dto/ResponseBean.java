@@ -1,11 +1,14 @@
 package com.yizhu.lj.dto;
 
+import lombok.Data;
+
 /**
  * 功能描述
  *
  * @author lijun
  * @date 2019/2/12
  */
+@Data
 public class ResponseBean<T> {
     private int code;
     private String message;
@@ -26,27 +29,5 @@ public class ResponseBean<T> {
 
     }
 
-    public int getCode() {
-        return code;
-    }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
-    }
 }

@@ -1,5 +1,8 @@
 package com.yizhu.lj.dao.entity;
 
+import lombok.Data;
+
+@Data
 public class Dept {
     private String keyID;
 
@@ -9,36 +12,13 @@ public class Dept {
 
     private String parentID;
 
-
-    public String getKeyID() {
-        return keyID;
-    }
-
-    public void setKeyID(String keyID) {
-        this.keyID = keyID == null ? null : keyID.trim();
-    }
-
-    public String getDeptName() {
-        return deptName;
-    }
-
-    public void setDeptName(String deptName) {
-        this.deptName = deptName == null ? null : deptName.trim();
-    }
-
-    public Long getState() {
-        return state;
-    }
-
-    public void setState(Long state) {
-        this.state = state;
-    }
-
-    public String getParentID() {
-        return parentID;
-    }
-
-    public void setParentID(String parentID) {
-        this.parentID = parentID == null ? null : parentID.trim();
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "keyID='" + keyID + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", state=" + state +
+                ", parentID='" + parentID + '\'' +
+                '}';
     }
 }

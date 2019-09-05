@@ -25,14 +25,16 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Lock;
 import java.util.stream.Collectors;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class test2 {
+public class test2  {
     @Autowired
     private UserService userMapper;
     @Autowired
@@ -78,26 +80,26 @@ public class test2 {
     }
     @Test
     public void contextLoads23() {
-//        ArrayList<Dept> depts = new ArrayList<>();
-//        for(int i=43142;i<43342;i++){
-//            Dept dept = new Dept();
-//            dept.setDeptName("未来集团"+i);
-//            depts.add(dept);
-//        }
-//        long start = System.currentTimeMillis();
-//        List<Dept> deptList=deptService.findDeptByList(depts);
-//        long end = System.currentTimeMillis();
-//        System.err.println("------------耗时:----" + (end - start));
-//        System.err.println("------------数据:----" + deptList.size());
-        ArrayList<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-        String join = StringUtils.join(list, ",");
-        String join1 = org.apache.commons.lang.StringUtils.join(list, ",");
-        String collect = list.stream().collect(Collectors.joining(","));
-        HashMap<Object, Object> map = new HashMap<>();
+        ArrayList<Dept> depts = new ArrayList<>();
+        for(int i=43142;i<43342;i++){
+            Dept dept = new Dept();
+            dept.setDeptName("未来集团"+i);
+            depts.add(dept);
+        }
+        long start = System.currentTimeMillis();
+        List<Dept> deptList=deptService.findDeptByList(depts);
+        long end = System.currentTimeMillis();
+        System.err.println("------------耗时:----" + (end - start));
+        System.err.println("------------数据:----" + deptList.size());
+//        ArrayList<String> list = new ArrayList<>();
+//        list.add("1");
+//        list.add("2");
+//        list.add("3");
+//        list.add("4");
+//        String join = StringUtils.join(list, ",");
+//        String join1 = org.apache.commons.lang.StringUtils.join(list, ",");
+//        String collect = list.stream().collect(Collectors.joining(","));
+//        HashMap<Object, Object> map = new HashMap<>();
 
 
 
