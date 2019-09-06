@@ -1,13 +1,13 @@
 package com.yizhu.lj.service.impl;
 
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 import com.yizhu.lj.dao.entity.Dept;
-import com.yizhu.lj.dao.mapper.DeptMapper;
-import com.yizhu.lj.dao.mapper.ModuleMapper;
-import com.yizhu.lj.dao.mapper.RoleModuleMapper;
-import com.yizhu.lj.dao.mapper.RoleUserMapper;
+import com.yizhu.lj.dao.entity.Picture;
+import com.yizhu.lj.dao.mapper.*;
 import com.yizhu.lj.dto.ResponseBean;
 import com.yizhu.lj.service.DeptService;
+import com.yizhu.lj.service.PictureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ import java.util.concurrent.Future;
  * @date 2019/2/1
  */
 @Service
-public class DeptServiceImpl implements DeptService {
+public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept>  implements DeptService {
 
     @Autowired
     private DeptMapper deptMapper;

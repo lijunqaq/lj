@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.retry.annotation.EnableRetry;
 
 @SpringBootApplication
-@MapperScan("com.yizhu.lj.dao.mapper")
+//@MapperScan("com.yizhu.lj.dao.mapper")
 @EnableRetry
 public class LjApplication {
 

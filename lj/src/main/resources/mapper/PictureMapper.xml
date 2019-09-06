@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yizhu.lj.dao.mapper.PictureMapper">
+
+    <!--&lt;!&ndash; 开启二级缓存 &ndash;&gt;-->
+    <!--<cache type="org.mapper.caches.ehcache.LoggingEhcache"/>-->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yizhu.lj.dao.entity.Picture">
+        <id column="id" property="id" />
+        <result column="url" property="url" />
+        <result column="source" property="source" />
+        <result column="state" property="state" />
+        <result column="create_time" property="createTime" />
+        <result column="updata_time" property="updataTime" />
+    </resultMap>
+
+</mapper>

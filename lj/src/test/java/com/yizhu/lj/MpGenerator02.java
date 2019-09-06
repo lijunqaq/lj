@@ -140,7 +140,7 @@ public class MpGenerator02 {
         tc.setXml(null);
         mpg.setTemplate(tc);
 
-        // 自定义模板配置，可以 copy 源码 mybatis-plus/src/main/resources/templates 下面内容修改，
+        // 自定义模板配置，可以 copy 源码 mapper-plus/src/main/resources/templates 下面内容修改，
         // 放置自己项目的 src/main/resources/templates 目录下, 默认名称一下可以不配置，也可以自定义模板名称
         // TemplateConfig tc = new TemplateConfig();
          tc.setController("...");

@@ -1,6 +1,7 @@
 package com.yizhu.lj.config.oauth2;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -48,11 +49,11 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .requestMatchers().antMatchers("/v1/**")
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
-//			.authorizeRequests().anyRequest()
-//			.access("authenticated and @userRelationService.hasPermission(request)")
-                .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
-                .and()
-                .cors()
+//			    .authorizeRequests().anyRequest()
+//			    .access("authenticated and @userRelationService.hasPermission(request)")
+//               .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
+//               .and()
+//               .cors()
                 .and()
                 .csrf().disable();
                  http.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());

@@ -109,7 +109,7 @@ public class MpGenerator {
             String packageName = "com.yizhu.lj";
             enableTableFieldAnnotation = false;
             tableIdType = null;
-            generateByTablesWithInjectConfig(packageName, "user");
+            generateByTablesWithInjectConfig(packageName, "picture");
         }
 
 }

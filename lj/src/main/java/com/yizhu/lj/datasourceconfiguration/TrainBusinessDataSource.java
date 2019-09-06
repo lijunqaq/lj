@@ -1,5 +1,6 @@
 package com.yizhu.lj.datasourceconfiguration;
 
+import com.baomidou.mybatisplus.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -22,7 +23,7 @@ import javax.sql.DataSource;
  * @date 2018/10/23 9:35
  */
 @Configuration
-@MapperScan(basePackages = "com.yizhu.lj.dao.mapper.UserMapper", sqlSessionTemplateRef = "userdbSqlSessionTemplate")
+@MapperScan(basePackages = "com.yizhu.lj.dao.mapper", sqlSessionTemplateRef = "userdbSqlSessionTemplate")
 public class TrainBusinessDataSource {
     @Bean(name = "userdbDataSource")
     @Primary
@@ -34,9 +35,9 @@ public class TrainBusinessDataSource {
     @Bean(name = "userdbSqlSessionFactory")
     @Primary
     public SqlSessionFactory testSqlSessionFactory(@Qualifier("userdbDataSource") DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean  bean = new MybatisSqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mybatis/mapper/usermapper/*.xml"));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mapper/*Mapper.xml"));
         return bean.getObject();
     }
 

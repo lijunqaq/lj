@@ -1,5 +1,7 @@
 package com.yizhu.lj.dao.entity;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -7,7 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 @Data
+@TableName("userinfo")
 public class User {
+    @TableId
     private String keyID;
     private String picture;
     private String name;

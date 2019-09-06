@@ -122,6 +122,7 @@ public class test2  {
 //        List<String> strings =
 //        String join1 = Arrays.asList(JSON.parse(str)).stream().collect(Collectors.joining(","));
 
+
     }
 
     @Test
@@ -155,7 +156,7 @@ public class test2  {
     @Test
     public void ossTest() {
 
-
+        Dept dept = deptService.selectById("000008ea-3e32-4ebe-8bbc-f3ef68afa8da");
 
         System.err.println("1");
     }

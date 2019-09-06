@@ -1,6 +1,8 @@
 package com.yizhu.lj.controller.user;
 
 
+import com.yizhu.lj.dao.entity.Picture;
+import com.yizhu.lj.service.PictureService;
 import com.yizhu.lj.service.impl.AliServiceImpl;
 import com.yizhu.lj.service.impl.QiNiuServiceImpl;
 import com.yizhu.lj.utils.AliOssUtil;
@@ -15,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.UUID;
 
 @Controller
@@ -23,6 +26,9 @@ import java.util.UUID;
 public class QiniuController {
 	@Autowired
 	private QiNiuServiceImpl qiniuService;
+    @Autowired
+    private PictureService pictureService;
+
     @Autowired
     private AliServiceImpl aliService;
     private static String fpath="http://pon8smknt.bkt.clouddn.com/";
@@ -75,6 +81,13 @@ public class QiniuController {
         String path = UUID.randomUUID()+".jpg";
         AliOssUtil.uploadByte(inputStream,path);
 
+        Picture picture = new Picture();
+        picture.setCreateTime(new Date());
+        picture.setUpdataTime(new Date());
+        picture.setSource(1);
+        picture.setState(1);
+        picture.setUrl(Alipath+path);
+        pictureService.insert(picture);
         return Alipath+path;
     }
 

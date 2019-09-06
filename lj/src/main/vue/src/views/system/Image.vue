@@ -9,6 +9,12 @@
       <div>
                 <img :src="imageAddress"  style="margin-left: 17%;height: 65%;width: 65%" />
       </div>
+
+        <div v-for="item in pictureList" :key="item.id">
+            <div class="logo">
+                <img :src="item.url"    >
+            </div>
+        </div>
     </div>
 
     <!--<div class="rz-picter">-->
@@ -17,6 +23,7 @@
                <!--@change="changeImage($event)"  class="ivu-btn">-->
     <!--</div>-->
     <!--<div>-->
+
 
 
     <!--</div>-->
@@ -32,6 +39,7 @@
 
         data() {
             return {
+                pictureList:"",
                 imageAddress:"https://lijunqaq.oss-cn-shenzhen.aliyuncs.com/wallhaven-6kpko7.jpg",
             }
         },
@@ -74,7 +82,7 @@
                 console.log("====="+this.file);
                 //localhost
                 //http://lijunqaq.top:8888
-                fetch.post('http://lijunqaq.top:8888/v1/img/qiniu', formData,config)
+                fetch.post('http://localhost:8888/v1/img/qiniu', formData,config)
                     .then((response) =>{
                         this.imageAddress=response.data;
                         this.$Message.success('Success!');
@@ -93,8 +101,20 @@
                 //     this.gopage(this.pageNo);
                 // });
             },
+
+
         },
         mounted: function () {
+
+        },
+        created(){
+            fetch({
+                url:'/picture',
+                method:'get',
+            }).then((resp)=>{
+                this.pictureList=resp.data.data;
+                console.log(resp.data)
+            })
 
         }
     }

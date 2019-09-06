@@ -15,12 +15,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 
-/**
- * @author coach tam
- * @create 2018/4/11
- * @since 1.0.0
- * 〈坚持灵活 灵活坚持〉
- */
+
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @Order(-1)
