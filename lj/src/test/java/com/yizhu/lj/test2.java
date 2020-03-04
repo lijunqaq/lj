@@ -1,5 +1,7 @@
 package com.yizhu.lj;
 
+import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUtil;
 import com.google.common.collect.Lists;
 import com.google.gson.Gson;
 import com.yizhu.lj.dao.entity.Dept;
@@ -14,19 +16,19 @@ import com.yizhu.lj.service.LoginLogService;
 import com.yizhu.lj.service.UserService;
 import com.yizhu.lj.utils.RedisUtil;
 import com.yizhu.lj.utils.RestTemplateInsiUtils;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
@@ -70,8 +72,8 @@ public class test2  {
             }
             System.out.println("------------插入-----" + depts.size());
             long start = System.currentTimeMillis();
-//            pool.submit(()-> deptMapper.insertByBatch(depts));
-          deptMapper.insertByBatch(depts);
+            pool.submit(()-> deptMapper.insertByBatch(depts));
+       //    deptMapper.insertByBatch(depts);
             long end = System.currentTimeMillis();
             System.out.println("------------耗时:----" + (end - start));
 
@@ -145,11 +147,10 @@ public class test2  {
 
     @Test
     public void contextLoads241() {
-    String str ="5125123x";
-        String s = str.toUpperCase();
-
-
-        System.err.println(s);
+        //当前时间
+        Date date = DateUtil.date();
+        //常用偏移，结果：2017-03-01 19:33:23
+        DateTime newDate3 = DateUtil.offsetHour(date, 20);
     }
 
 
@@ -159,6 +160,9 @@ public class test2  {
         Dept dept = deptService.selectById("000008ea-3e32-4ebe-8bbc-f3ef68afa8da");
 
         System.err.println("1");
+
     }
+
+
 }
 

@@ -25,8 +25,7 @@ import java.util.Map;
  * @author Lj
  * @date 2019/9/2
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest
+
 public class MpGenerator {
 
 
@@ -53,12 +52,12 @@ public class MpGenerator {
 
         private void generateByTablesWithInjectConfig(String packageName, String... tableNames) {
             GlobalConfig config = new GlobalConfig();
-            String dbUrl = "jdbc:mysql://localhost:3306/lj";
+            String dbUrl = "jdbc:mysql://192.168.0.70:3307/phl-new-beta?useUnicode=true&characterEncoding=utf8";
             DataSourceConfig dataSourceConfig = new DataSourceConfig();
             dataSourceConfig.setDbType(DbType.MYSQL)
                     .setUrl(dbUrl)
-                    .setUsername("root")
-                    .setPassword("123")
+                    .setUsername("dba")
+                    .setPassword("Yhbj@9989")
                     .setDriverName("com.mysql.jdbc.Driver");
             StrategyConfig strategyConfig = new StrategyConfig();
             strategyConfig
@@ -81,7 +80,7 @@ public class MpGenerator {
             }
             TemplateConfig templateConfig = new TemplateConfig()
                     .setXml("/templates/mapper.xml")
-                    .setEntity("/templates/entity2.java");//注意：不要带上.vm
+                    .setEntity("/templates/entity.java");//注意：不要带上.vm
             InjectionConfig injectionConfig = new InjectionConfig() {
                 @Override
                 public void initMap() {//自定义参数
@@ -109,7 +108,7 @@ public class MpGenerator {
             String packageName = "com.yizhu.lj";
             enableTableFieldAnnotation = false;
             tableIdType = null;
-            generateByTablesWithInjectConfig(packageName, "picture");
+            generateByTablesWithInjectConfig(packageName, "ybs_health_edu_individuation");
         }
 
 }

@@ -11,7 +11,7 @@ const ajaxUrl = env === 'development'
 // 创建axios实例
 const service = axios.create({
     baseURL: ajaxUrl, // api的base_url
-    timeout: 10000 // 请求超时时间
+    timeout: 50000 // 请求超时时间
 });
 
 // request拦截器
