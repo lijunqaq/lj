@@ -9,6 +9,7 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,8 +31,10 @@ public class SmsUtils {
     static final String domain = "dysmsapi.aliyuncs.com";
 
     // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-    static final String accessKeyId = "LTAIyCTTGgCKmb09";
-    static final String accessKeySecret = "YFBD6QUb7Q4MJe1CrcUmcAxiDQxM7l";
+    @Value("${oss.accessKeyId}")
+    private static String accessKeyId ;
+    @Value("${oss.accessKeySecret}")
+    private static String accessKeySecret ;
 
     public static SendSmsResponse sendSms(String name,String code,String phone) throws ClientException {
 

@@ -28,6 +28,8 @@ public class QiniuController {
 	private QiNiuServiceImpl qiniuService;
     @Autowired
     private PictureService pictureService;
+    @Autowired
+    private AliOssUtil aliOssUtil;
 
     @Autowired
     private AliServiceImpl aliService;
@@ -79,7 +81,7 @@ public class QiniuController {
         //url += "http://你的BucketName.你的Endpoint/自定义路径/" + fileName;
 
         String path = UUID.randomUUID()+".jpg";
-        AliOssUtil.uploadByte(inputStream,path);
+        aliOssUtil.uploadByte(inputStream,path);
 
         Picture picture = new Picture();
         picture.setCreateTime(new Date());

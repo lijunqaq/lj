@@ -82,7 +82,7 @@
                 console.log("====="+this.file);
                 //localhost
                 //http://lijunqaq.top:8888
-                fetch.post('http://127.0.0.1:8888/v1/img/qiniu', formData,config)
+                fetch.post('/img/qiniu', formData,config)
                     .then((response) =>{
                         this.imageAddress=response.data;
                         this.$Message.success('Success!');

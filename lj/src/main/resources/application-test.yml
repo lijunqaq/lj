@@ -15,7 +15,7 @@ spring:
      driver-class-name: com.mysql.jdbc.Driver
      url: jdbc:mysql://localhost:3306/lj?useUnicode=true&characterEncoding=utf8
      username: root
-     password: 123456
+     password: 123
      type: com.alibaba.druid.pool.DruidDataSource
      # 初始连接数
      initialSize: 5
@@ -36,16 +36,16 @@ spring:
      testWhileIdle: true
      testOnBorrow: false
      testOnReturn: false
-  redis:
-    host: 192.168.48.128
-    port: 6379
-    timeout: 20000
-    pool:
-      max-active: 8
-      min-idle: 0
-      max-idle: 8
-      max-wait: -1
-    password:
+#  redis:
+#    host: 192.168.48.128
+#    port: 6379
+#    timeout: 20000
+#    pool:
+#      max-active: 8
+#      min-idle: 0
+#      max-idle: 8
+#      max-wait: -1
+#    password:
 ---
 mybatis-plus:
   global-config:

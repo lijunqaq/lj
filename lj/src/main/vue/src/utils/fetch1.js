@@ -6,7 +6,7 @@ const ajaxUrl = env === 'development'
     ? 'http://localhost:8888'
    // http://23h6852w34.51mypc.cn
     : env === 'production'
-        ? 'http://lijunqaq.top:8888'
+        ? 'http://121.37.226.72:8888'
         : 'https://debug.url.com ';
 // 创建axios实例
 const service = axios.create({
