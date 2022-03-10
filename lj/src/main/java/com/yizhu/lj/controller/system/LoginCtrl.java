@@ -1,20 +1,22 @@
 package com.yizhu.lj.controller.system;
 
 
+
+import cn.hutool.extra.mail.MailUtil;
+import com.yizhu.lj.utils.SendMailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 
+import javax.mail.MessagingException;
 /**
  * 〈〉
  *
@@ -41,6 +43,11 @@ public class LoginCtrl {
             new SecurityContextLogoutHandler().logout(req,res,authentication);
         }
         return  "ok";
+    }
+
+    @GetMapping("/email")
+    public void email(){
+        SendMailUtils.sendMessage("1077387582@qq.com","你好","哈哈哈");
     }
 }
 

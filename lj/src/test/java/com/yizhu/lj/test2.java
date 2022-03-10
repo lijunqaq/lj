@@ -14,10 +14,11 @@ import com.yizhu.lj.romote.ResponseData;
 import com.yizhu.lj.service.DeptService;
 import com.yizhu.lj.service.LoginLogService;
 import com.yizhu.lj.service.UserService;
+import com.yizhu.lj.utils.ListUtils;
 import com.yizhu.lj.utils.RedisUtil;
 import com.yizhu.lj.utils.RestTemplateInsiUtils;
 
-import org.apache.commons.lang3.StringUtils;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.BeanUtils;
@@ -163,6 +164,39 @@ public class test2  {
 
     }
 
+    public static void main(String[] args) {
+        String[] inputStr = {"6", "7", "6", "5", "9", "6", "8", "9", "7", "6", "9", "6"};
+        // 内存块
+        int memory = 3;
+        List<String> list = new ArrayList<>();
+        for(int i = 0; i < inputStr.length; i++){
+            if(i == 0){
+                list.add(inputStr[i]);
+                System.out.println("第"+ i +"次访问：\t\t" + ListUtils.listToString(list));
+            }else {
+                if(ListUtils.find(list, inputStr[i])){
+                    // 存在字符串，则获取该下标
+                    int index = ListUtils.findIndex(list, inputStr[i]);
+                    // 下标不位于栈顶时，且list大小不为1时
+                    if(!(list.get(list.size() - 1)).equals(inputStr[i]) && list.size() != 1) {
+                        String str = list.get(index);
+                        list.remove(index);
+                        list.add(str);
+                    }
+                    System.out.println("第" + i + "次" + "访问：\t\t" + ListUtils.listToString(list));
+                }else{
+                    if(list.size()>= memory) {
+                        list.remove(0);
+                        list.add(inputStr[i]);
+                        System.out.println("第" + i + "次" + "访问：\t\t" + ListUtils.listToString(list));
+                    }else {
+                        list.add(inputStr[i]);
+                        System.out.println("第" + i + "次" + "访问：\t\t" + ListUtils.listToString(list));
+                    }
+                }
+            }
+        }
+    }
 
 
 }

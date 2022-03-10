@@ -76,8 +76,6 @@ public class QiniuController {
 
         byte[] byt = new byte[inputStream.available()];
 
-
-
         //url += "http://你的BucketName.你的Endpoint/自定义路径/" + fileName;
 
         String path = UUID.randomUUID()+".jpg";

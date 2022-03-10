@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yizhu.lj.mapper.UserHospitalMapper">
+
+    <!-- 开启二级缓存 -->
+    <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yizhu.lj.entity.UserHospital">
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="user_code" property="userCode" />
+        <result column="star_date" property="starDate" />
+        <result column="disable_date" property="disableDate" />
+        <result column="work_date" property="workDate" />
+        <result column="birth_date" property="birthDate" />
+        <result column="category" property="category" />
+        <result column="shcool" property="shcool" />
+        <result column="major" property="major" />
+    </resultMap>
+
+</mapper>

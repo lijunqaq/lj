@@ -1,5 +1,6 @@
 package com.yizhu.lj;
 
+import ch.qos.logback.core.util.SystemInfo;
 import com.aliyuncs.exceptions.ClientException;
 import com.yizhu.lj.dao.entity.Dept;
 import com.yizhu.lj.dao.mapper.LoginLogMapper;
@@ -14,10 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import oshi.SystemInfo;
-import oshi.hardware.CentralProcessor.TickType;
-import oshi.hardware.HardwareAbstractionLayer;
-import oshi.util.Util;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -44,27 +42,8 @@ public class LjApplicationTests {
 
     }
 
-    @Test
-    public void contextLoads2() throws SigarException {
-        SystemInfo si = new SystemInfo();
-        HardwareAbstractionLayer hal = si.getHardware();
-        // CPU信息
-        long[] prevTicks = hal.getProcessor().getSystemCpuLoadTicks();
-        Util.sleep(1000);
-        long[] ticks = hal.getProcessor().getSystemCpuLoadTicks();
-        long nice = ticks[TickType.NICE.getIndex()] - prevTicks[TickType.NICE.getIndex()];
-        long irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];
-        long softirq = ticks[TickType.SOFTIRQ.getIndex()] - prevTicks[TickType.SOFTIRQ.getIndex()];
-        long steal = ticks[TickType.STEAL.getIndex()] - prevTicks[TickType.STEAL.getIndex()];
-        long cSys = ticks[TickType.SYSTEM.getIndex()] - prevTicks[TickType.SYSTEM.getIndex()];
-        long user = ticks[TickType.USER.getIndex()] - prevTicks[TickType.USER.getIndex()];
-        long iowait = ticks[TickType.IOWAIT.getIndex()] - prevTicks[TickType.IOWAIT.getIndex()];
-        long idle = ticks[TickType.IDLE.getIndex()] - prevTicks[TickType.IDLE.getIndex()];
-        long totalCpu = user + nice + cSys + idle + iowait + irq + softirq + steal;
 
-        System.out.println(SystemInfo.getCurrentPlatformEnum());
 
-    }
     @Test
     public void contextLoads23() {
 //        System.out.println("11");

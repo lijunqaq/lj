@@ -52,12 +52,18 @@ public class MpGenerator {
 
         private void generateByTablesWithInjectConfig(String packageName, String... tableNames) {
             GlobalConfig config = new GlobalConfig();
-            String dbUrl = "jdbc:mysql://192.168.0.70:3307/phl-new-beta?useUnicode=true&characterEncoding=utf8";
+           // String dbUrl = "jdbc:mysql://192.168.0.70:3307/phl-new-beta?useUnicode=true&characterEncoding=utf8";
+            String dbUrl = "jdbc:mysql://lijunqaq.top:3306/wuliuqi??useUnicode=true&characterEncoding=utf8";
             DataSourceConfig dataSourceConfig = new DataSourceConfig();
+//            dataSourceConfig.setDbType(DbType.MYSQL)
+//                    .setUrl(dbUrl)
+//                    .setUsername("dba")
+//                    .setPassword("Yhbj@9989")
+//                    .setDriverName("com.mysql.jdbc.Driver");
             dataSourceConfig.setDbType(DbType.MYSQL)
                     .setUrl(dbUrl)
-                    .setUsername("dba")
-                    .setPassword("Yhbj@9989")
+                    .setUsername("root")
+                    .setPassword("Lijunqaq_567!")
                     .setDriverName("com.mysql.jdbc.Driver");
             StrategyConfig strategyConfig = new StrategyConfig();
             strategyConfig
@@ -71,7 +77,7 @@ public class MpGenerator {
                     .setInclude(tableNames);//修改替换成你需要的表名，多个表名传数组
             config.setActiveRecord(false)
                     .setIdType(tableIdType)
-                    .setAuthor("lijun")
+                    .setAuthor("test")
                     .setBaseResultMap(true)
                     .setOutputDir("d:\\codeGen")
                     .setFileOverride(true);
@@ -108,7 +114,7 @@ public class MpGenerator {
             String packageName = "com.yizhu.lj";
             enableTableFieldAnnotation = false;
             tableIdType = null;
-            generateByTablesWithInjectConfig(packageName, "ybs_health_edu_individuation");
+            generateByTablesWithInjectConfig(packageName, "user_hospital");
         }
 
 }
